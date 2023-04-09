@@ -1,6 +1,6 @@
 import { Formik, Form, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../redux/phonebookSlice';
+import { addContact } from '../redux/operations';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
 import Input from './NameForm.styled';

@@ -1,14 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from '../redux/phonebookSlice';
-import { selectVisibleContacts } from '../redux/selectors';
+import { deleteContact } from '../redux/operations';
+import { selectContacts } from '../redux/selectors';
 import { List, ListItem } from './Contact.styled';
 
 const Contacts = () => {
   const dispatch = useDispatch();
-  const visibleContacts = useSelector(selectVisibleContacts);
-  const handleDelete = id => {
-    dispatch(deleteContact(id));
-  };
+  const visibleContacts = useSelector(selectContacts);
+  const handleDelete = () => dispatch(deleteContact());
+
   return (
     <List>
       <h2>Contacts</h2>
@@ -17,7 +16,7 @@ const Contacts = () => {
           <p>
             {cont.name} : {cont.number}
           </p>
-          <button onClick={() => handleDelete(cont.id)}>Delete</button>
+          <button onClick={handleDelete(cont.id)}>Delete</button>
         </ListItem>
       ))}
     </List>

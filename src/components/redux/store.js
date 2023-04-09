@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import phonebookReducer from './phonebookSlice';
+import { phonebookReducer } from './phonebookSlice';
 
 const rootReducer = combineReducers({
   phonebook: phonebookReducer,
