@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  fetchContscts,
-  addContact,
-  deleteContact,
-  setFilter,
-} from './operations';
+import { fetchContscts, addContact, deleteContact } from './operations';
 
 const handlePending = state => {
   state.contacts.isLoading = true;
@@ -25,11 +20,11 @@ export const phonebookSlice = createSlice({
     },
     filter: '',
   },
-  // reducers: {
-  //   setFilter: (state, action) => {
-  //     state.filter = action.payload;
-  //   },
-  // },
+  reducers: {
+    setFilter: (state, action) => {
+      state.filter = action.payload;
+    },
+  },
   extraReducers: {
     [fetchContscts.pending]: handlePending,
     [fetchContscts.fulfilled](state, action) {
@@ -55,15 +50,15 @@ export const phonebookSlice = createSlice({
       state.contacts.items.splice(index, 1);
     },
     [deleteContact.rejected]: handleRejected,
-    [setFilter.pending]: handlePending,
-    [setFilter.fulfilled](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = null;
-      state.filter = action.payload;
-    },
-    [setFilter.rejected]: handleRejected,
+    // [setFilter.pending]: handlePending,
+    // [setFilter.fulfilled](state, action) {
+    //   state.contacts.isLoading = false;
+    //   state.contacts.error = null;
+    //   state.filter = action.payload;
+    // },
+    // [setFilter.rejected]: handleRejected,
   },
 });
 
 export const phonebookReducer = phonebookSlice.reducer;
-// export const { setFilter } = phonebookSlice.actions;
+export const { setFilter } = phonebookSlice.actions;

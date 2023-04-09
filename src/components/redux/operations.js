@@ -39,17 +39,17 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
-export const setFilter = createAsyncThunk(
-  'contacts/setFilter',
-  async (filter, thunkAPI) => {
-    try {
-      const response = await axios.get(`/contacts?name=${filter}`);
-      return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
+// export const setFilter = createAsyncThunk(
+//   'contacts/setFilter',
+//   async (filter, thunkAPI) => {
+//     try {
+//       const response = await axios.get(`/contacts?name=${filter}`);
+//       return response.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
 
 // export const setFilter = (state, action) => {
 //   state.filter = action.payload;

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { setFilter } from '../redux/operations';
+import { setFilter } from '../redux/phonebookSlice';
 import { selectFilter } from '../redux/selectors';
 import Input from './Filter.styled';
 
@@ -10,7 +10,6 @@ const Filter = () => {
 
   const handleFilterChange = event => {
     dispatch(setFilter(event.currentTarget.value));
-    console.log(event.currentTarget.value);
   };
 
   return (
