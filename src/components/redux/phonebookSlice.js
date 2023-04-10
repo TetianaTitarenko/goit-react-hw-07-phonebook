@@ -2,22 +2,20 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchContscts, addContact, deleteContact } from './operations';
 
 const handlePending = state => {
-  state.contacts.isLoading = true;
+  state.isLoading = true;
 };
 
 const handleRejected = (state, action) => {
-  state.contacts.isLoading = false;
-  state.contacts.error = action.payload;
+  state.isLoading = false;
+  state.error = action.payload;
 };
 
 export const phonebookSlice = createSlice({
   name: 'phonebook',
   initialState: {
-    contacts: {
-      items: [],
-      isLoading: false,
-      error: null,
-    },
+    contacts: [],
+    isLoading: false,
+    error: null,
     filter: '',
   },
   reducers: {
@@ -28,35 +26,29 @@ export const phonebookSlice = createSlice({
   extraReducers: {
     [fetchContscts.pending]: handlePending,
     [fetchContscts.fulfilled](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = null;
-      state.contacts.items = action.payload;
+      state.isLoading = false;
+      state.error = null;
+      state.contacts = action.payload;
     },
     [fetchContscts.rejected]: handleRejected,
     [addContact.pending]: handlePending,
     [addContact.fulfilled](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = null;
-      state.contacts.items.push(action.payload);
+      console.log(action.payload);
+      state.isLoading = false;
+      state.error = null;
+      state.contacts.push(action.payload);
     },
     [addContact.rejected]: handleRejected,
     [deleteContact.pending]: handlePending,
     [deleteContact.fulfilled](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = null;
-      const index = state.contacts.items.findIndex(
+      state.isLoading = false;
+      state.error = null;
+      const index = state.contacts.findIndex(
         contact => contact.id === action.payload
       );
-      state.contacts.items.splice(index, 1);
+      state.contacts.splice(index, 1);
     },
     [deleteContact.rejected]: handleRejected,
-    // [setFilter.pending]: handlePending,
-    // [setFilter.fulfilled](state, action) {
-    //   state.contacts.isLoading = false;
-    //   state.contacts.error = null;
-    //   state.filter = action.payload;
-    // },
-    // [setFilter.rejected]: handleRejected,
   },
 });
 

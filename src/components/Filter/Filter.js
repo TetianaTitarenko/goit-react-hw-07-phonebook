@@ -9,13 +9,13 @@ const Filter = () => {
   const filter = useSelector(selectFilter);
 
   const handleFilterChange = event => {
-    dispatch(setFilter(event.currentTarget.value));
+    dispatch(setFilter(event.target.value));
   };
 
   return (
     <label>
       <h3>Find contacts by name</h3>
-      <Input type="text" value={filter} onChange={handleFilterChange()} />
+      <Input type="text" value={filter} onChange={handleFilterChange} />
     </label>
   );
 };
