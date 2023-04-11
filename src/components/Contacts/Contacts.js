@@ -18,6 +18,8 @@ const Contacts = () => {
     dispatch(fetchContscts());
   }, [dispatch]);
 
+  const onDelete = id => dispatch(deleteContact(id));
+
   return (
     <List>
       <h2>Contacts</h2>
@@ -30,9 +32,7 @@ const Contacts = () => {
             <p>
               {contact.name} : {contact.number}
             </p>
-            <button onClick={() => dispatch(deleteContact(contact.id))}>
-              Delete
-            </button>
+            <button onClick={() => onDelete(contact.id)}>Delete</button>
           </ListItem>
         ))
       )}
